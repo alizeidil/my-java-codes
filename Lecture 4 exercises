@@ -1,0 +1,51 @@
+import java.util.*;
+
+public class Ders4 {
+
+    public static void main(String[] args) {
+        
+        //Q1
+        int userNumber, randomNumber, difference; 
+                
+        randomNumber= (int)(Math.random()*41)+10;  //generating random number between [10-50]
+        Scanner sc = new Scanner(System.in);
+        System.out.println("guess the random number between 10-50");
+        userNumber = sc.nextInt();  //taking number from user
+        difference = Math.abs(userNumber - randomNumber);  //taking difference
+        
+        System.out.println("Random number = " + randomNumber +
+                " Your number = " + userNumber);
+        System.out.println("Difference = " + difference);
+              
+        if (difference == 0){
+            System.out.println("You get 10 points");
+        }
+        else if (difference < 10){
+            System.out.println("You get 5 points");
+        }
+        else if (difference < 20){
+            System.out.println("You get 3 points");
+        }
+        else {
+            System.out.println("You get 0 point");
+        }
+        
+        System.out.println("");
+        
+        //Q2
+        System.out.println("enter day number of the week");
+        int dayNumber = sc.nextInt();
+        
+        switch(dayNumber){
+            case 1: System.out.println("Monday"); break;
+            case 2: System.out.println("Tuesday"); break;
+            case 3: System.out.println("Wednesday"); break;
+            case 4: System.out.println("Thursday"); break;
+            case 5: System.out.println("Friday"); break;
+            case 6: System.out.println("Saturday"); break;
+            case 7: System.out.println("Sunday"); break;
+            default: System.out.println("invalid number");
+            
+        } 
+    }    
+}
