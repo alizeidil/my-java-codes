@@ -1,0 +1,88 @@
+package pkg2darrays;
+
+/**
+ *
+ * @author alizeidillazyuksel
+ */
+public class Main {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+       
+        //printMatrix(generateMatrix(2,3));
+        int [][] myMatrix = generateMatrix(4,5);
+        printMatrix(myMatrix);
+        largestRowFirst(myMatrix);
+        System.out.println("");
+        
+    }
+    
+    public static void printMatrix(int[][] matrix){
+        for(int i = 0; i < matrix.length; i++){
+            for(int y = 0; y < matrix[i].length; y++){
+                System.out.print(matrix[i][y] + " ");
+        }
+            System.out.println();
+        }
+    }
+    
+    public static int[][] generateMatrix(int row, int column){
+        int[][] matrix = new int [row][column];
+        for(int i = 0; i < row; i++){
+            for(int y = 0; y <column; y++){
+                matrix[i][y] = (int)(Math.random()*10);
+        }
+            
+        }
+        
+        return matrix;    
+    
+    }
+    public static int[][] largestRowFirst(int[][] matrix){
+        int largestRowIndex = -1;   
+        int max_sum = Integer.MIN_VALUE;    
+        for(int i=0; i<matrix.length; i++){
+            int sum = 0;
+            for(int j=0; j<matrix[i].length; j++){
+                sum += matrix[i][j];
+            }
+            if(sum > max_sum){
+                max_sum = sum;
+                largestRowIndex = i;
+            } 
+        }
+        //swapping largest and first row
+        int[] temp = matrix[0];
+        matrix[0] = matrix[largestRowIndex];
+        matrix[largestRowIndex] = temp;
+        return matrix;      
+    }
+    
+        public static int[][] largestColFirst(int[][] matrix){
+        int[] largestCol = new int[matrix.length];
+        int largestColIndex = -1;
+        int max_sum = Integer.MIN_VALUE;
+        for(int i=0; i<matrix[0].length; i++){
+            int sum = 0;
+            int[] tempCol = new int[matrix.length];
+            for(int j=0; j<matrix.length; j++){
+                tempCol[j] = matrix[j][i];
+                sum += matrix[j][i];
+            }
+            if(sum > max_sum){
+                max_sum = sum;
+                largestColIndex = i;
+                largestCol = tempCol;
+            } 
+        }
+        //swapping largest and first column 
+        for(int i=0; i<matrix[0].length; i++){
+            matrix[i][largestColIndex] = matrix[i][0];
+            matrix[i][0] = largestCol[i];
+        }
+        
+        return matrix;     
+}
