@@ -1,0 +1,16 @@
+import java.util.*;
+
+public class ArraysExamples {
+
+        // Entering array values with Scanner and displaying them using a for loop
+        
+        int [] liste2 = new int[4];
+        Scanner input = new Scanner(System.in);
+        for(int k = 0; k<liste2.length; k++){
+            liste2[k] = input.nextInt();
+        }
+        for(int k = 0; k<liste2.length; k++){
+            System.out.println(liste2[k]);
+        }
+    }    
+}
