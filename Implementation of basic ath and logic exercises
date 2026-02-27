@@ -1,0 +1,70 @@
+import java.util.*;
+
+public class Ders3 {
+
+    public static void main(String[] args) {
+        
+        //EXAMPLE 1
+        Scanner input = new Scanner(System.in);
+        System.out.println("enter an integer :  ");
+        int i = input.nextInt();
+        
+        if (i<5){
+            System.out.println("i is smaller than five");
+        }
+        
+        if (i==5){
+            System.out.println("i equals 5");
+        }
+        
+        if (i>5){
+            System.out.println("i is bigger than five");
+        }
+        
+        //EXAMPLE 2
+        Scanner reader = new Scanner(System.in);
+        System.out.print("Please enter a number :");
+ 
+        double sayi = reader.nextInt();
+        
+        // the number < 0  , also negative 
+        if (sayi < 0.0)
+            System.out.println(sayi + " Negative.");
+ 
+        // the number > 0 , also positive
+        else if ( sayi > 0.0)
+            System.out.println(sayi + " Positive.");
+ 
+        // the number = 0
+        else
+            System.out.println(sayi + " ZERO.");
+        
+        int sayim = 1234, tersi = 0;
+        int yedek=sayim;
+ 
+        for(;sayim != 0; sayim /= 10) {
+            int basamak = sayim % 10;
+            tersi = tersi * 10 + basamak;
+        }
+        System.out.println("Sayının      : " + yedek);
+        System.out.println("Sayının Tersi: " + tersi);
+        
+        int num;
+        System.out.println("Please enter an integer that is NOT negative.");
+        //Scanner input = new Scanner(System.in);
+        //ustte zaten scanner oldugu icin hemen ustumuzdeki scanneri yazmiyoruz
+        num = input.nextInt();
+        
+        System.out.println("The factorial of your integer is " +factorial(num));
+    }
+    
+    // FACTORIAL 
+    
+    public static long factorial(int num){
+        if(num == 0)
+            return 1;
+        else
+            return num*factorial(num-1);
+        
+        }   
+    }
