@@ -1,0 +1,67 @@
+package question4;
+
+import java.util.Arrays;
+
+public class Question4 {
+
+    private static int[][] graph; // Adjacency matrix representing the weighted graph
+    private static int numCities; 
+    private static boolean[] visited; // Array to track visited cities
+    private static int[] bestRoute; // Array to store the best route
+    private static int bestCost; // Variable to store the least total airfare
+    private static String[] cityNames;
+
+    public static void main(String[] args) {
+        
+        graph = new int[][]{
+            
+                {0, 69, 209, 349, 379},       // Los Angeles to ...
+                {69, 0, 179, 329, 359},      // San Francisco to ...
+                {209, 179, 0, 229, 279},    // Denver to ...
+                {349, 329, 229, 0, 189},   // Detroit to ...
+                {379, 359, 279, 189, 0}   // New York to ...
+                
+        };
+        
+        cityNames = new String[]{"Los Angeles", "San Francisco", "Denver", "Detroit", "New York"};
+        numCities = graph.length;
+        visited = new boolean[numCities];
+        bestRoute = new int[numCities];
+        bestCost = Integer.MAX_VALUE;
+
+        tsp(0, 0, 1, new int[numCities]);
+
+        System.out.println("Best route with least total airfare:");
+        for (int i = 0; i < numCities; i++) {
+            System.out.print(cityNames[i] + " --> ");
+        }
+        System.out.print("Ending");
+        System.out.println("\nTotal airfare cost: " + bestCost);
+    }
+
+    public static void tsp(int currentCity, int currentCost, int visitedCount, int[] currentRoute) {
+        
+        if (visitedCount == numCities && graph[currentCity][0] != 0) {
+            currentCost += graph[currentCity][0];
+
+            if (currentCost < bestCost) {
+                // Founding a better and cheaper route
+                bestCost = currentCost;
+                bestRoute = Arrays.copyOf(currentRoute, numCities);
+            }
+        } else {
+            
+            for (int i = 0; i < numCities; i++) {
+                if (!visited[i] && graph[currentCity][i] != 0) {
+                    visited[i] = true;
+                    currentRoute[visitedCount - 1] = i;
+
+                    tsp(i, currentCost + graph[currentCity][i], visitedCount + 1, currentRoute);
+
+                    visited[i] = false;
+                }
+            }
+        }
+    }
+    
+}
